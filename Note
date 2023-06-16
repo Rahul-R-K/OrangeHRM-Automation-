@@ -1,0 +1,211 @@
+import time
+from selenium.webdriver import ActionChains
+from selenium.webdriver.chrome.service import Service
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+import pytest
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support.select import Select
+import pyautogui
+from utilities.BaseClass import BaseClass
+
+
+class Testcase1(BaseClass):
+    def test_TC_Login_01(self):
+        try:
+            WebDriverWait(self.driver, 30).until(
+                EC.presence_of_element_located((By.NAME, "username")))
+            username =
+            username = self.driver.find_element(By.NAME,"username")
+            username.send_keys("Admin")
+            password = self.driver.find_element(By.NAME,"password")
+            password.send_keys("admin123")
+            submit = self.driver.find_element(By.XPATH,"//button[@type='submit']")
+            submit.click()
+        except Exception as e:
+            print(f"Caught exception: {type(e).__name__}: {e}")
+
+    def test_TC_Login_02(self):
+        try:
+            WebDriverWait(self.driver, 30).until(
+                EC.presence_of_element_located((By.NAME, "username")))
+            username = self.driver.find_element(By.NAME,"username")
+            username.send_keys("Admin")
+            password = self.driver.find_element(By.NAME,"password")
+            password.send_keys("InvalidPassword")
+            submit = self.driver.find_element(By.XPATH,"//button[@type='submit']")
+            submit.click()
+        except Exception as e:
+            print(f"Caught exception: {type(e).__name__}: {e}")
+
+
+
+    def test_TC_PIM_01(self):
+        try:
+            try:
+                WebDriverWait(self.driver, 30).until(
+                    EC.presence_of_element_located((By.NAME, "username")))
+                username = self.driver.find_element(By.NAME, "username")
+                username.send_keys("Admin")
+                password = self.driver.find_element(By.NAME, "password")
+                password.send_keys("admin123")
+                submit = self.driver.find_element(By.XPATH, "//button[@type='submit']")
+                submit.click()
+            except Exception as e:
+                print(f"Caught exception: {type(e).__name__}: {e}")
+            WebDriverWait(self.driver, 30).until(
+                EC.presence_of_element_located((By.XPATH, "//aside/nav/div[2]/ul/li[2]")))
+            PIM = self.driver.find_element(By.XPATH,"//aside/nav/div[2]/ul/li[2]")
+            PIM.click()
+            WebDriverWait(self.driver, 30).until(
+                EC.presence_of_element_located((By.XPATH, "(//button[@type='button'])[contains(.,'Add')]")))
+            adduserbutton = self.driver.find_element(By.XPATH,"(//button[@type='button'])[contains(.,'Add')]")
+            adduserbutton.click()
+            time.sleep(2)
+            FirstName = self.driver.find_element(By.XPATH,"//input[@placeholder='First Name']")
+            FirstName.send_keys("Rahul")
+            MiddleName = self.driver.find_element(By.XPATH, "//input[@placeholder='Middle Name']")
+            MiddleName.send_keys("R")
+            LastName = self.driver.find_element(By.XPATH, "//input[@placeholder='Last Name']")
+            LastName.send_keys("K")
+            EmployeeId = self.driver.find_element(By.XPATH,"//label[contains(.,'Employee Id')]/following::input[1]")
+            EmployeeId.clear().send_keys("1234")
+            Img = self.driver.find_element(By.XPATH,"//input[@class='oxd-file-input']")
+            Img.send_keys('C:/Users/rahul.rk.REDIM.001/PycharmProjects/Guvi1/File/image1.jpg')
+            element = self.driver.find_element(By.XPATH, "//input[@type='checkbox']")
+            action = ActionChains(driver)
+            action.click(on_element=element)
+            action.perform()
+            time.sleep(1)
+            username = self.driver.find_element(By.XPATH,"(//input[@class='oxd-input oxd-input--active'])[3]")
+            username.send_keys("rahul1597")
+            time.sleep(1)
+            password = self.driver.find_element(By.XPATH,"(//div/input)[8]")
+            password.send_keys("guvi1234")
+            time.sleep(1)
+            conformpassword = self.driver.find_element(By.XPATH,"(//div/input)[9]")
+            conformpassword.send_keys("guvi1234")
+            time.sleep(1)
+            Savebtn = self.driver.find_element(By.XPATH,"//button[contains(.,'Save')]").click()
+        except Exception as e:
+            print(f"Caught exception: {type(e).__name__}: {e}")
+
+
+
+    def test_TC_PIM_02(self):
+        try:
+            try:
+                WebDriverWait(self.driver, 30).until(
+                    EC.presence_of_element_located((By.NAME, "username")))
+                username = self.driver.find_element(By.NAME, "username")
+                username.send_keys("Admin")
+                password = self.driver.find_element(By.NAME, "password")
+                password.send_keys("admin123")
+                submit = self.driver.find_element(By.XPATH, "//button[@type='submit']")
+                submit.click()
+            except Exception as e:
+                print(f"Caught exception: {type(e).__name__}: {e}")
+            WebDriverWait(self.driver, 30).until(
+                EC.presence_of_element_located((By.XPATH, "//aside/nav/div[2]/ul/li[2]")))
+            PIM = self.driver.find_element(By.XPATH, "//aside/nav/div[2]/ul/li[2]")
+            PIM.click()
+            WebDriverWait(self.driver, 30).until(
+                EC.presence_of_element_located((By.XPATH, "(//button[@type='button'])[6]")))
+            editbutton = self.driver.find_element(By.XPATH, "(//button[@type='button'])[6]")
+            editbutton.click()
+            WebDriverWait(self.driver, 10).until(EC.presence_of_element_located((By.NAME, "firstName")))
+            time.sleep(1)
+            NickName = self.driver.find_element(By.XPATH,"(//label[normalize-space()='Nickname'])/following::input[1]")
+            driver.execute_script("arguments[0].value = '';", NickName)
+            NickName.send_keys("MyNickNmae")
+            time.sleep(1)
+            OtherId = self.driver.find_element(By.XPATH, "(//label[normalize-space()='Other Id'])[1]/following::input[1]")
+            driver.execute_script("arguments[0].value = '';", OtherId)
+            OtherId.send_keys("12345")
+            time.sleep(1)
+            employeeId = self.driver.find_element(By.XPATH,"//label[contains(.,'Employee Id')]/following::input[1]")
+            element = self.driver.find_element(By.XPATH,"//label[contains(.,'Employee Id')]/following::input[1]")
+            driver.execute_script("arguments[0].value = '';", element)
+            employeeId.send_keys("1")
+            time.sleep(1)
+            licensee = self.driver.find_element(By.XPATH,"(//input)[8]")
+            driver.execute_script("arguments[0].value = '';", licensee)
+            licensee.send_keys("TN19-20240531")
+            time.sleep(2)
+            gender = self.driver.find_element(By.XPATH, "//input[@value='2']")
+            action = ActionChains(driver)
+            action.click(on_element=gender)
+            action.perform()
+            try:
+                savebtn = self.driver.find_element(By.XPATH,"(//button[@type='submit'])[1]").click()
+            except:
+                savebtn = self.driver.find_element(By.XPATH, "(//button[@type='submit'])[1]")
+                action = ActionChains(driver)
+                action.click(on_element=savebtn)
+                action.perform()
+        except Exception as e:
+            print(f"Caught exception: {type(e).__name__}: {e}")
+            test_TC_Login_01()
+            WebDriverWait(self.driver, 30).until(
+                EC.presence_of_element_located((By.XPATH, "//aside/nav/div[2]/ul/li[2]")))
+            PIM = self.driver.find_element(By.XPATH, "//aside/nav/div[2]/ul/li[2]")
+            PIM.click()
+            WebDriverWait(self.driver, 30).until(
+                EC.presence_of_element_located((By.XPATH, "(//button[@type='button'])[6]")))
+            editbutton = self.driver.find_element(By.XPATH, "(//button[@type='button'])[6]")
+            editbutton.click()
+            WebDriverWait(self.driver, 30).until(
+                EC.presence_of_element_located((By.XPATH, "//aside/nav/div[2]/ul/li[2]")))
+            PIM = self.driver.find_element(By.XPATH, "//aside/nav/div[2]/ul/li[2]")
+            PIM.click()
+            WebDriverWait(driver, 30).until(
+                EC.presence_of_element_located((By.XPATH, "(//button[@type='button'])[6]")))
+            editbutton = self.driver.find_element(By.XPATH, "(//button[@type='button'])[6]")
+            editbutton.click()
+            element = WebDriverWait(driver, 10).until(
+                EC.element_to_be_clickable((By.ID, "//img[@alt='profile picture']/parent::div")))
+            image = self.driver.find_element(By.XPATH, "//img[@alt='profile picture']/parent::div").click()
+            action = ActionChains(driver)
+            action.click(on_element=image)
+            action.perform()
+            time.sleep(3)
+            Img = self.driver.find_element(By.XPATH, "//input[@class='oxd-file-input']")
+            Img.send_keys('C:/Users/rahul.rk.REDIM.001/PycharmProjects/Guvi1/File/image2.jpg')
+            time.sleep(3)
+            try:
+                savebtn = self.driver.find_element(By.XPATH, "(//button[@type='submit'])[1]").click()
+            except:
+                savebtn = self.driver.find_element(By.XPATH, "(//button[@type='submit'])[1]").click()
+                action = ActionChains(driver)
+                action.click(on_element=savebtn)
+                action.perform()
+
+
+    def test_TC_PIM_03(self):
+        try:
+            try:
+                WebDriverWait(self.driver, 30).until(
+                    EC.presence_of_element_located((By.NAME, "username")))
+                username = self.driver.find_element(By.NAME, "username")
+                username.send_keys("Admin")
+                password = self.driver.find_element(By.NAME, "password")
+                password.send_keys("admin123")
+                submit = self.driver.find_element(By.XPATH, "//button[@type='submit']")
+                submit.click()
+            except Exception as e:
+                print(f"Caught exception: {type(e).__name__}: {e}")
+            WebDriverWait(self.driver, 30).until(
+                EC.presence_of_element_located((By.XPATH, "//aside/nav/div[2]/ul/li[2]")))
+            PIM = self.driver.find_element(By.XPATH, "//aside/nav/div[2]/ul/li[2]")
+            PIM.click()
+            WebDriverWait(driver, 30).until(
+                EC.presence_of_element_located((By.XPATH, "(//button[@type='button'])[6]")))
+            deletebtn = self.driver.find_element(By.XPATH,"(//button[@type='button'])[5]")
+            deletebtn.click()
+            time.sleep(3)
+            yes = self.driver.find_element(By.XPATH,"(//button[@type='button'])[112]")
+            yes.click()
+        except Exception as e:
+            print(f"Caught exception: {type(e).__name__}: {e}")
